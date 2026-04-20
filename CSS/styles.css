@@ -11,13 +11,15 @@
 
 body {
   font-family: 'Exo 2', 'Segoe UI', Arial, sans-serif;
-  background-color: #07090f;
-  color: #e0e0e0;
+  background-color: #170d24;
+  color: #fff7ff;
   min-height: 100vh;
   padding: 28px 16px 50px;
   background-image:
-    radial-gradient(ellipse at 20% 20%, rgba(0,180,255,0.04) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 80%, rgba(255,100,40,0.04) 0%, transparent 60%);
+    linear-gradient(135deg, rgba(255,0,102,0.18), rgba(255,166,0,0.14), rgba(255,230,102,0.12), rgba(35,214,129,0.14), rgba(36,160,255,0.15), rgba(170,80,255,0.16)),
+    radial-gradient(circle at top left, rgba(255,255,255,0.2), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 28%),
+    linear-gradient(180deg, #251138 0%, #140a21 100%);
 }
 
 /* =============================================
@@ -32,15 +34,15 @@ header h1 {
   font-family: 'Share Tech Mono', monospace;
   font-size: 1.55rem;
   font-weight: 700;
-  color: #00d4ff;
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 3px;
-  text-shadow: 0 0 18px rgba(0,212,255,0.4);
+  text-shadow: 0 0 18px rgba(255,255,255,0.35);
 }
 
 header p {
   font-size: 0.78rem;
-  color: #4a5568;
+  color: #f4d9ff;
   margin-top: 6px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -53,8 +55,17 @@ header::after {
   display: block;
   width: 120px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #00d4ff55, transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,87,166,0.7), rgba(70,188,255,0.7), transparent);
   margin: 14px auto 0;
+}
+
+.pride-banner {
+  width: min(940px, 100%);
+  height: 12px;
+  margin: 0 auto 28px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #e40303 0 16.6%, #ff8c00 16.6% 33.2%, #ffed00 33.2% 49.8%, #008026 49.8% 66.4%, #004dff 66.4% 83%, #750787 83% 100%);
+  box-shadow: 0 0 18px rgba(255,255,255,0.18);
 }
 
 /* =============================================
@@ -86,19 +97,19 @@ header::after {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #5a6a7e;
+  color: #fff2ff;
   font-weight: 600;
   padding: 4px 14px;
   border-radius: 20px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.24);
 }
 
 /* Numero de visor */
 .visor-cell .cell-num {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.62rem;
-  color: #2a3a4a;
+  color: #d6bae9;
   letter-spacing: 1px;
   margin-top: -4px;
 }
@@ -117,20 +128,20 @@ header::after {
 
 /* Canvas 1 — Imagen Normal */
 #canvasRaw {
-  border: 2px solid #2a8a6a;
-  box-shadow: 0 0 20px rgba(40,180,120,0.2), 0 4px 20px rgba(0,0,0,0.5);
+  border: 2px solid #ff5fa2;
+  box-shadow: 0 0 20px rgba(255,95,162,0.28), 0 4px 20px rgba(0,0,0,0.42);
 }
 
 /* Canvas 2 — Contorno principal */
 #canvas {
-  border: 2px solid #00d4ff;
-  box-shadow: 0 0 20px rgba(0,212,255,0.2), 0 4px 20px rgba(0,0,0,0.5);
+  border: 2px solid #57c7ff;
+  box-shadow: 0 0 20px rgba(87,199,255,0.28), 0 4px 20px rgba(0,0,0,0.42);
 }
 
 /* Canvas 3 — Segmentacion */
 #canvasSeg {
-  border: 2px solid #ff6b35;
-  box-shadow: 0 0 20px rgba(255,107,53,0.2), 0 4px 20px rgba(0,0,0,0.5);
+  border: 2px solid #b57dff;
+  box-shadow: 0 0 20px rgba(181,125,255,0.28), 0 4px 20px rgba(0,0,0,0.42);
 }
 
 /* Video fuente oculto pero activo */
@@ -160,9 +171,9 @@ header::after {
   z-index: 2;
 }
 
-.badge-raw    { background: rgba(40,180,120,0.2);  color: #44cc99; border: 1px solid #2a8a6a; }
-.badge-main   { background: rgba(0,212,255,0.12);  color: #00d4ff; border: 1px solid #00d4ff66; }
-.badge-seg    { background: rgba(255,107,53,0.15); color: #ff8c5a; border: 1px solid #ff6b3566; }
+.badge-raw    { background: rgba(255,95,162,0.22);  color: #ffd8e9; border: 1px solid rgba(255,95,162,0.65); }
+.badge-main   { background: rgba(87,199,255,0.18);  color: #e0f6ff; border: 1px solid rgba(87,199,255,0.6); }
+.badge-seg    { background: rgba(181,125,255,0.2); color: #f0e2ff; border: 1px solid rgba(181,125,255,0.62); }
 
 /* =============================================
    ETIQUETAS DE COLORES DETECTADOS
@@ -214,6 +225,12 @@ header::after {
 
 .tag-Azul    { border-color: #4488ff; color: #77aaff; }
 .tag-Azul    .dot { background: #4488ff; box-shadow: 0 0 4px #4488ff; }
+
+.tag-Amarillo { border-color: #ffe44d; color: #fff1a1; }
+.tag-Amarillo .dot { background: #ffe44d; box-shadow: 0 0 4px #ffe44d; }
+
+.tag-Cafe    { border-color: #8b5a2b; color: #d0ab83; }
+.tag-Cafe    .dot { background: #8b5a2b; box-shadow: 0 0 4px #8b5a2b; }
 
 .tag-Naranja { border-color: #ffaa00; color: #ffcc55; }
 .tag-Naranja .dot { background: #ffaa00; box-shadow: 0 0 4px #ffaa00; }
@@ -271,15 +288,15 @@ header::after {
 
 /* Boton Activar Camara */
 #btn-activar {
-  background: rgba(0,212,255,0.08);
-  color: #00d4ff;
-  border-color: rgba(0,212,255,0.45);
-  box-shadow: 0 0 14px rgba(0,212,255,0.12);
+  background: linear-gradient(90deg, rgba(255,95,162,0.25), rgba(255,201,92,0.25), rgba(87,199,255,0.25), rgba(181,125,255,0.25));
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.35);
+  box-shadow: 0 0 16px rgba(255,147,210,0.22);
 }
 
 #btn-activar:hover:not(:disabled) {
-  background: rgba(0,212,255,0.16);
-  box-shadow: 0 0 22px rgba(0,212,255,0.28);
+  background: linear-gradient(90deg, rgba(255,95,162,0.38), rgba(255,201,92,0.36), rgba(87,199,255,0.36), rgba(181,125,255,0.38));
+  box-shadow: 0 0 24px rgba(255,147,210,0.34);
 }
 
 /* Boton Capturar Imagen */
@@ -307,17 +324,17 @@ header::after {
   max-width: 340px;
   margin: 0 auto 16px;
   padding: 12px 18px;
-  border: 1px dashed rgba(0,212,255,0.2);
+  border: 1px dashed rgba(255,255,255,0.28);
   border-radius: 10px;
-  background: rgba(0,212,255,0.02);
-  color: #4a5568;
+  background: rgba(255,255,255,0.08);
+  color: #f7d8ff;
   text-align: left;
 }
 
 #cam-placeholder svg {
   width: 28px;
   height: 28px;
-  color: rgba(0,212,255,0.25);
+  color: rgba(255,255,255,0.5);
   flex-shrink: 0;
 }
 
@@ -326,12 +343,12 @@ header::after {
   font-size: 0.70rem;
   letter-spacing: 0.3px;
   line-height: 1.5;
-  color: #4a5568;
+  color: #ffe8ff;
   margin: 0;
 }
 
 #cam-placeholder p strong {
-  color: #00d4ff99;
+  color: #fff6a6;
 }
 
 
@@ -340,7 +357,7 @@ header::after {
   max-width: 1400px;
   height: 1px;
   margin: 28px auto 0;
-  background: linear-gradient(90deg, transparent, rgba(0,212,255,0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,116,181,0.45), rgba(90,212,255,0.45), transparent);
 }
 
 /* =============================================
@@ -351,9 +368,9 @@ header::after {
   text-align: center;
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.78rem;
-  color: #00d4ff;
-  background: rgba(0,212,255,0.04);
-  border: 1px solid rgba(0,212,255,0.15);
+  color: #fff7ff;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
   border-radius: 6px;
   display: block;
   padding: 10px 28px;
@@ -383,7 +400,7 @@ header::after {
   gap: 6px;
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.68rem;
-  color: #5a6a7e;
+  color: #fff0ff;
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
