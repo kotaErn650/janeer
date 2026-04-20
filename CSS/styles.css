@@ -64,7 +64,7 @@ header::after {
   height: 12px;
   margin: 0 auto 28px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #e40303 0 16.6%, #ff8c00 16.6% 33.2%, #ffed00 33.2% 49.8%, #008026 49.8% 66.4%, #004dff 66.4% 83%, #750787 83% 100%);
+  background: linear-gradient(90deg, #e40303 0%, #e40303 16.666%, #ff8c00 16.666%, #ff8c00 33.333%, #ffed00 33.333%, #ffed00 50%, #008026 50%, #008026 66.666%, #004dff 66.666%, #004dff 83.333%, #750787 83.333%, #750787 100%);
   box-shadow: 0 0 18px rgba(255,255,255,0.18);
 }
 

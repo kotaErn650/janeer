@@ -28,6 +28,21 @@ const UMBRALES_CAFE = {
   minGSobreB: 10
 };
 
+const UMBRALES_AMARILLO = {
+  minR: 170,
+  minG: 150,
+  maxB: 120,
+  maxDifRG: 70
+};
+
+const UMBRALES_NARANJA = {
+  minR: 160,
+  minG: 60,
+  maxG: 185,
+  maxB: 95,
+  minRDominante: 35
+};
+
 // =============================================
 // ACTIVAR CAMARA — solo al pulsar el boton
 // =============================================
@@ -78,7 +93,10 @@ function clasificarColor(r, g, b) {
     return "Gris";
 
   // AMARILLO: rojo y verde altos, azul bajo
-  if (r > 170 && g > 150 && b < 120 && difRG < 70)
+  if (r > UMBRALES_AMARILLO.minR &&
+      g > UMBRALES_AMARILLO.minG &&
+      b < UMBRALES_AMARILLO.maxB &&
+      difRG < UMBRALES_AMARILLO.maxDifRG)
     return "Amarillo";
 
   // CAFÉ: rojo medio-alto, verde moderado y azul bajo para tonos marrones cálidos
@@ -90,7 +108,11 @@ function clasificarColor(r, g, b) {
     return "Café";
 
   // NARANJA: rojo alto, verde medio-bajo, azul bajo
-  if (r > 160 && g > 60 && g < 185 && b < 95 && r > g + 35)
+  if (r > UMBRALES_NARANJA.minR &&
+      g > UMBRALES_NARANJA.minG &&
+      g < UMBRALES_NARANJA.maxG &&
+      b < UMBRALES_NARANJA.maxB &&
+      r > g + UMBRALES_NARANJA.minRDominante)
     return "Naranja";
 
   // ROJO: canal rojo claramente dominante
