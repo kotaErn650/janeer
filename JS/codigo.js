@@ -63,16 +63,16 @@ function clasificarColor(r, g, b) {
     return "Negro";
 
   // GRIS: brillo medio, saturacion baja
-  if (brillo >= 45 && brillo <= 200 && rango < 38)
+  if (brillo >= 55 && brillo <= 200 && rango < 38)
     return "Gris";
 
   // AMARILLO: rojo y verde altos, azul bajo
   if (r > 170 && g > 150 && b < 120 && Math.abs(r - g) < 70)
     return "Amarillo";
 
-  // CAFE: rojo medio-alto, verde medio, azul bajo
+  // CAFÉ: rojo medio-alto, verde medio y azul bajo para tonos marrones
   if (r > 90 && r < 210 && g > 40 && g < 150 && b < 100 && r > g + 20 && g > b + 10)
-    return "Cafe";
+    return "Café";
 
   // NARANJA: rojo alto, verde medio-bajo, azul bajo
   if (r > 160 && g > 60 && g < 185 && b < 95 && r > g + 35)
@@ -101,7 +101,7 @@ const estilos = {
   Verde:   { contorno: "#44cc44", mascara: [ 50, 200,  50] },
   Azul:    { contorno: "#4488ff", mascara: [ 50, 100, 220] },
   Amarillo:{ contorno: "#ffe44d", mascara: [255, 225,  60] },
-  Cafe:    { contorno: "#8b5a2b", mascara: [139,  90,  43] },
+  "Café":  { contorno: "#8b5a2b", mascara: [139,  90,  43] },
   Naranja: { contorno: "#ffaa00", mascara: [255, 140,   0] },
   Blanco:  { contorno: "#dddddd", mascara: [210, 210, 210] },
   Negro:   { contorno: "#888888", mascara: [ 80,  80,  80] },

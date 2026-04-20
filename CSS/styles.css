@@ -229,8 +229,8 @@ header::after {
 .tag-Amarillo { border-color: #ffe44d; color: #fff1a1; }
 .tag-Amarillo .dot { background: #ffe44d; box-shadow: 0 0 4px #ffe44d; }
 
-.tag-Cafe    { border-color: #8b5a2b; color: #d0ab83; }
-.tag-Cafe    .dot { background: #8b5a2b; box-shadow: 0 0 4px #8b5a2b; }
+.tag-Café    { border-color: #8b5a2b; color: #d0ab83; }
+.tag-Café    .dot { background: #8b5a2b; box-shadow: 0 0 4px #8b5a2b; }
 
 .tag-Naranja { border-color: #ffaa00; color: #ffcc55; }
 .tag-Naranja .dot { background: #ffaa00; box-shadow: 0 0 4px #ffaa00; }
