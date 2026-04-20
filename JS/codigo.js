@@ -18,6 +18,31 @@ const tagsRaw    = document.getElementById('tags-raw');
 const tagsCanvas = document.getElementById('tags-canvas');
 const tagsSeg    = document.getElementById('tags-seg');
 
+const UMBRALES_CAFE = {
+  minR: 90,
+  maxR: 210,
+  minG: 40,
+  maxG: 150,
+  maxB: 100,
+  minRDominante: 20,
+  minGSobreB: 10
+};
+
+const UMBRALES_AMARILLO = {
+  minR: 170,
+  minG: 150,
+  maxB: 120,
+  maxDifRG: 70
+};
+
+const UMBRALES_NARANJA = {
+  minR: 160,
+  minG: 60,
+  maxG: 185,
+  maxB: 95,
+  minRDominante: 35
+};
+
 // =============================================
 // ACTIVAR CAMARA — solo al pulsar el boton
 // =============================================
@@ -53,21 +78,41 @@ function clasificarColor(r, g, b) {
   const min    = Math.min(r, g, b);
   const brillo = (r + g + b) / 3;
   const rango  = max - min;
+  const difRG  = Math.abs(r - g);
 
   // BLANCO: muy brillante y baja saturacion
   if (brillo > 200 && rango < 45)
     return "Blanco";
 
   // NEGRO: muy oscuro
-  if (brillo < 45)
+  if (brillo < 55 && max < 90)
     return "Negro";
 
   // GRIS: brillo medio, saturacion baja
-  if (brillo >= 45 && brillo <= 200 && rango < 38)
+  if (brillo >= 55 && brillo <= 200 && rango < 38)
     return "Gris";
 
+  // AMARILLO: rojo y verde altos, azul bajo
+  if (r > UMBRALES_AMARILLO.minR &&
+      g > UMBRALES_AMARILLO.minG &&
+      b < UMBRALES_AMARILLO.maxB &&
+      difRG < UMBRALES_AMARILLO.maxDifRG)
+    return "Amarillo";
+
+  // CAFÉ: rojo medio-alto, verde moderado y azul bajo para tonos marrones cálidos
+  if (r > UMBRALES_CAFE.minR && r < UMBRALES_CAFE.maxR &&
+      g > UMBRALES_CAFE.minG && g < UMBRALES_CAFE.maxG &&
+      b < UMBRALES_CAFE.maxB &&
+      r > g + UMBRALES_CAFE.minRDominante &&
+      g > b + UMBRALES_CAFE.minGSobreB)
+    return "Café";
+
   // NARANJA: rojo alto, verde medio-bajo, azul bajo
-  if (r > 160 && g > 60 && g < 165 && b < 90 && r > g + 55)
+  if (r > UMBRALES_NARANJA.minR &&
+      g > UMBRALES_NARANJA.minG &&
+      g < UMBRALES_NARANJA.maxG &&
+      b < UMBRALES_NARANJA.maxB &&
+      r > g + UMBRALES_NARANJA.minRDominante)
     return "Naranja";
 
   // ROJO: canal rojo claramente dominante
@@ -92,6 +137,8 @@ const estilos = {
   Rojo:    { contorno: "#ff4444", mascara: [220,  50,  50] },
   Verde:   { contorno: "#44cc44", mascara: [ 50, 200,  50] },
   Azul:    { contorno: "#4488ff", mascara: [ 50, 100, 220] },
+  Amarillo:{ contorno: "#ffe44d", mascara: [255, 225,  60] },
+  "Café":  { contorno: "#8b5a2b", mascara: [139,  90,  43] },
   Naranja: { contorno: "#ffaa00", mascara: [255, 140,   0] },
   Blanco:  { contorno: "#dddddd", mascara: [210, 210, 210] },
   Negro:   { contorno: "#888888", mascara: [ 80,  80,  80] },
