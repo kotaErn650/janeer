@@ -18,6 +18,16 @@ const tagsRaw    = document.getElementById('tags-raw');
 const tagsCanvas = document.getElementById('tags-canvas');
 const tagsSeg    = document.getElementById('tags-seg');
 
+const UMBRALES_CAFE = {
+  minR: 90,
+  maxR: 210,
+  minG: 40,
+  maxG: 150,
+  maxB: 100,
+  minRDominante: 20,
+  minGSobreB: 10
+};
+
 // =============================================
 // ACTIVAR CAMARA — solo al pulsar el boton
 // =============================================
@@ -54,15 +64,6 @@ function clasificarColor(r, g, b) {
   const brillo = (r + g + b) / 3;
   const rango  = max - min;
   const difRG  = Math.abs(r - g);
-  const cafe = {
-    minR: 90,
-    maxR: 210,
-    minG: 40,
-    maxG: 150,
-    maxB: 100,
-    minRDominante: 20,
-    minGSobreB: 10
-  };
 
   // BLANCO: muy brillante y baja saturacion
   if (brillo > 200 && rango < 45)
@@ -81,11 +82,11 @@ function clasificarColor(r, g, b) {
     return "Amarillo";
 
   // CAFÉ: rojo medio-alto, verde moderado y azul bajo para tonos marrones cálidos
-  if (r > cafe.minR && r < cafe.maxR &&
-      g > cafe.minG && g < cafe.maxG &&
-      b < cafe.maxB &&
-      r > g + cafe.minRDominante &&
-      g > b + cafe.minGSobreB)
+  if (r > UMBRALES_CAFE.minR && r < UMBRALES_CAFE.maxR &&
+      g > UMBRALES_CAFE.minG && g < UMBRALES_CAFE.maxG &&
+      b < UMBRALES_CAFE.maxB &&
+      r > g + UMBRALES_CAFE.minRDominante &&
+      g > b + UMBRALES_CAFE.minGSobreB)
     return "Café";
 
   // NARANJA: rojo alto, verde medio-bajo, azul bajo
