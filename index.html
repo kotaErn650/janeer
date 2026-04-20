@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vision por Computador — Thresholding</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Vision por Computador</h1>
+      <p>Thresholding &mdash; Clasificacion y Segmentacion de Color</p>
+    </header>
+
+    <!-- Video fuente oculto -->
+    <video id="video" width="460" height="345" autoplay playsinline></video>
+
+    <!-- Panel de control de camara -->
+    <div id="ctrl-panel">
+      <button id="btn-activar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        Activar Camara
+      </button>
+    </div>
+
+    <!-- Pantalla de espera mientras no hay camara activa -->
+    <div id="cam-placeholder">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      <p>Pulsa <strong>Activar Camara</strong> para solicitar permisos y comenzar el reconocimiento en tiempo real.</p>
+    </div>
+
+    <!-- Fila de los tres visores -->
+    <div class="visor-row" id="visor-row" hidden>
+      <!-- VISOR 1: Imagen normal -->
+      <div class="visor-cell">
+        <span class="cell-title">Imagen Original</span>
+        <div class="canvas-wrapper">
+          <canvas id="canvasRaw" width="460" height="345"></canvas>
+          <span class="canvas-badge badge-raw">LIVE</span>
+        </div>
+        <div class="color-tags" id="tags-raw"></div>
+      </div>
+
+      <!-- VISOR 2: Contorno adaptable sobre imagen real -->
+      <div class="visor-cell">
+        <span class="cell-title">Deteccion de Contorno</span>
+        <div class="canvas-wrapper">
+          <canvas id="canvas" width="460" height="345"></canvas>
+          <span class="canvas-badge badge-main">CONTORNO</span>
+        </div>
+        <div class="color-tags" id="tags-canvas"></div>
+      </div>
+
+      <!-- VISOR 3: Segmentacion por color -->
+      <div class="visor-cell">
+        <span class="cell-title">Segmentacion de Color</span>
+        <div class="canvas-wrapper">
+          <canvas id="canvasSeg" width="460" height="345"></canvas>
+          <span class="canvas-badge badge-seg">MASCARA</span>
+        </div>
+        <div class="color-tags" id="tags-seg"></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Panel de informacion tecnica -->
+    <p id="info">Pulsa &ldquo;Activar Camara&rdquo; para comenzar.</p>
+
+    <!-- Leyenda de colores reconocidos -->
+    <div class="legend-row">
+      <div class="legend-item">
+        <div class="legend-dot" style="background: #ff4444"></div>
+        Rojo
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: #44cc44"></div>
+        Verde
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: #4488ff"></div>
+        Azul
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: #ffaa00"></div>
+        Naranja
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: #dddddd"></div>
+        Blanco
+      </div>
+      <div class="legend-item">
+        <div
+          class="legend-dot"
+          style="background: #444444; border: 1px solid #666"
+        ></div>
+        Negro
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: #888888"></div>
+        Gris
+      </div>
+    </div>
+
+    <script src="JS/codigo.js"></script>
+  </body>
+</html>
