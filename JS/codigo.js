@@ -53,6 +53,16 @@ function clasificarColor(r, g, b) {
   const min    = Math.min(r, g, b);
   const brillo = (r + g + b) / 3;
   const rango  = max - min;
+  const difRG  = Math.abs(r - g);
+  const cafe = {
+    minR: 90,
+    maxR: 210,
+    minG: 40,
+    maxG: 150,
+    maxB: 100,
+    minRDominante: 20,
+    minGSobreB: 10
+  };
 
   // BLANCO: muy brillante y baja saturacion
   if (brillo > 200 && rango < 45)
@@ -67,11 +77,15 @@ function clasificarColor(r, g, b) {
     return "Gris";
 
   // AMARILLO: rojo y verde altos, azul bajo
-  if (r > 170 && g > 150 && b < 120 && Math.abs(r - g) < 70)
+  if (r > 170 && g > 150 && b < 120 && difRG < 70)
     return "Amarillo";
 
-  // CAFÉ: rojo medio-alto, verde medio y azul bajo para tonos marrones
-  if (r > 90 && r < 210 && g > 40 && g < 150 && b < 100 && r > g + 20 && g > b + 10)
+  // CAFÉ: rojo medio-alto, verde moderado y azul bajo para tonos marrones cálidos
+  if (r > cafe.minR && r < cafe.maxR &&
+      g > cafe.minG && g < cafe.maxG &&
+      b < cafe.maxB &&
+      r > g + cafe.minRDominante &&
+      g > b + cafe.minGSobreB)
     return "Café";
 
   // NARANJA: rojo alto, verde medio-bajo, azul bajo
